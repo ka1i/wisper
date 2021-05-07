@@ -24,7 +24,7 @@ build:        ## build this app.
 
 .PHONY: next
 next:           ## Build frontend.
-	rm -r pkg/assets/web/*
+	rm -rf pkg/assets/web/*
 	@cd web; yarn ; yarn static ; cp -r out/* ../pkg/assets/web/;cd ../
 
 .PHONY: help
