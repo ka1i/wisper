@@ -16,6 +16,8 @@ func init() {
 }
 
 func main() {
+	internal.InitApp()
+
 	addr := internal.Serve(home)
 	fw := internal.Watch(home)
 
