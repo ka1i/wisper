@@ -23,7 +23,6 @@ jobs:
 
     - name: cpoy assets
       run: |
-        rm -vrf pkg/assets/web/*
         cp -vr web/out/* pkg/assets/web/
 
     - name: Set up Go 1.16
