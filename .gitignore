@@ -1,0 +1,9 @@
+# dotfile
+.DS_Store
+
+# backend
+go.sum
+# binary file
+/bin
+# go mod pkg
+/vendor
