@@ -1,17 +1,18 @@
 NAME    := wisper
 SOURCE  := cmd/${NAME}/main.go
-BINARY  := bin/${NAME}
 
 # This version-strategy uses git tags to set the version string
 VERSION := $(shell git describe --tags --always)
 UPDATE  := $(shell date +"%Y.%m.%d %X")
+
+BINARY  := bin/wisper_${VERSION}/${NAME}
 
 all: build
 
 .PHONY: build
 build:        ## build this app.
 	@echo "making ${BINARY}"
-	@mkdir -p bin
+	@mkdir -p bin/wisper_${VERSION}
 	@echo "${NAME} Version:${VERSION}\n${NAME} Last Update:${UPDATE}"
 	@go build -ldflags "                                 		\
         -installsuffix 'static'                                 \

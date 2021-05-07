@@ -1,4 +1,4 @@
-name: Release
+name: wisper Release
 
 on:
   workflow_dispatch:
@@ -10,6 +10,22 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Use Node.js 14.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+
+    - name: Setup
+      run: |
+      cd web
+      yarn
+      yarn static
+
+    - name: cpoy assets
+      run: |
+      rm -vr ../pkg/assets/web/*
+      cp -vr out/* ../pkg/assets/web/
+
     - name: Set up Go 1.16
       uses: actions/setup-go@v2
       with:
@@ -18,9 +34,7 @@ jobs:
     - name: Setup
       run: go mod vendor
     - name: Build
-      run: |
-        mkdir -p bin/wisper
-        go build -ldflags "-installsuffix 'static' -s -w " -o bin/wisper_$(git describe --tags --always)/wisper cmd/wisper/main.go
+      run: make build
     - name: Gzip
       run: tar -czvf wisper.tar.gz -C./bin/ wisper_$(git describe --tags --always)/wisper
     - name: Create Release
