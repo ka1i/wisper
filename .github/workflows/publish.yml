@@ -23,7 +23,7 @@ jobs:
 
     - name: cpoy assets
       run: |
-        if [ -d pkg/assets/web ]; then
+        if [ -d "pkg/assets/web" ]; then
           rm -vr pkg/assets/web
         else 
           mkdir pkg/assets/web
