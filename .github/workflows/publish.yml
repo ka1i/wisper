@@ -27,6 +27,7 @@ jobs:
           rm -vr pkg/assets/web
         else 
           mkdir pkg/assets/web
+        fi
         cp -vr web/out/* pkg/assets/web/
 
     - name: Set up Go 1.16
