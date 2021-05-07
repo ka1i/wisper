@@ -1,0 +1,46 @@
+name: Release
+
+on:
+  workflow_dispatch:
+
+jobs:
+
+  build:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Go 1.16
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.16
+
+    - name: Setup
+      run: go mod vendor
+    - name: Build
+      run: |
+        mkdir -p bin/wisper
+        go build -ldflags "-installsuffix 'static' -s -w " -o bin/wisper_$(git describe --tags --always)/wisper cmd/wisper/main.go
+    - name: Gzip
+      run: tar -czvf wisper.tar.gz -C./bin/ wisper_$(git describe --tags --always)/wisper
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+      with:
+        tag_name: wisper-${{ github.sha }}
+        release_name: Release ${{ github.sha }}
+        body: |
+          Changes ${{ github.sha }}
+        draft: false
+        prerelease: false
+    - name: upload artifact
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: wisper.tar.gz
+        asset_name: wisper.tar.gz
+        asset_content_type: application/gzip
