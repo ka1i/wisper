@@ -17,14 +17,14 @@ jobs:
 
     - name: Setup
       run: |
-      cd web
-      yarn
-      yarn static
+        cd web
+        yarn
+        yarn static
 
     - name: cpoy assets
       run: |
-      rm -vr ../pkg/assets/web/*
-      cp -vr out/* ../pkg/assets/web/
+        rm -vr ../pkg/assets/web/*
+        cp -vr out/* ../pkg/assets/web/
 
     - name: Set up Go 1.16
       uses: actions/setup-go@v2
