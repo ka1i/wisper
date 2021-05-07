@@ -45,6 +45,7 @@ func assetsUnpkg(assetsName string, template string) error {
 				return err
 			}
 		} else if file.Name()[0] == 46 {
+			log.Println(file.Name())
 			continue
 		} else {
 			fmt.Printf("unpkg: %s\n", localPath)

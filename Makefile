@@ -22,6 +22,11 @@ build:        ## build this app.
         "                                                       \
         -o ${BINARY} ${SOURCE}
 
+.PHONY: next
+next:           ## Build frontend.
+	rm -r pkg/assets/web/*
+	@cd web; yarn ; yarn static ; cp -r out/* ../pkg/assets/web/;cd ../
+
 .PHONY: help
 help:           ## Show this help.
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'

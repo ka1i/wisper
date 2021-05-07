@@ -7,10 +7,10 @@ import (
 	"github.com/progrium/watcher"
 )
 
-func Watch(dir string) *watcher.Watcher {
+func Watch() *watcher.Watcher {
 	fw := watcher.New()
 
-	utils.Fatal(fw.AddRecursive(dir))
+	utils.Fatal(fw.AddRecursive(utils.GetHome()))
 
 	go fw.Start(450 * time.Millisecond)
 
