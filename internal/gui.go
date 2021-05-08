@@ -2,6 +2,7 @@ package internal
 
 import (
 	"log"
+	"time"
 
 	"github.com/progrium/macdriver/cocoa"
 	"github.com/progrium/macdriver/core"
@@ -10,7 +11,9 @@ import (
 	"github.com/progrium/watcher"
 )
 
-func Wisper(localserve string, fw *watcher.Watcher) cocoa.NSApplication {
+func Wisper(localserve string, fw *watcher.Watcher) {
+	ticker := time.NewTicker(time.Second * 30)
+
 	cocoa.TerminateAfterWindowsClose = false
 
 	config := webkit.WKWebViewConfiguration_New()
@@ -82,10 +85,13 @@ func Wisper(localserve string, fw *watcher.Watcher) cocoa.NSApplication {
 					log.Printf("event - hotload successfully: %v", event.FileInfo.Name())
 				case <-fw.Closed:
 					return
+				case <-ticker.C:
+					wv.Reload(nil)
 				}
 			}
 		}()
 	})
 
-	return app
+	app.ActivateIgnoringOtherApps(true)
+	app.Run()
 }

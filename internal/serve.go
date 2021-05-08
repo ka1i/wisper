@@ -1,7 +1,6 @@
 package internal
 
 import (
-	"fmt"
 	"io"
 	"log"
 	"net"
@@ -54,7 +53,7 @@ func (h serverHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		log.Println(err)
 		return
 	}
-	fmt.Println(rq)
+	//fmt.Println(rq)
 	file, _ := os.Open(rq)
 	if k, ok := mime[filepath.Ext(file.Name())]; ok {
 		w.Header().Set("Content-Type", k)
