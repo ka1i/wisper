@@ -22,6 +22,18 @@ build:        ## build this app.
         "                                                       \
         -o ${BINARY} ${SOURCE}
 
+.PHONY: install
+install:        ## install this app.
+	@echo "${NAME} installing ..."
+	@echo "Wispeeer Version:${VERSION}\nWispeeer Last Update:${UPDATE}"
+	@go install -ldflags "                                 		\
+        -installsuffix 'static'                                 \
+        -s -w                                                   \
+        -X '$(shell go list -m)/pkg/version.VERSION=${VERSION}' \
+        -X '$(shell go list -m)/pkg/version.UPDATE=${UPDATE}'   \
+        "                                                       \
+        ./...
+
 .PHONY: next
 next:           ## Build frontend.
 	rm -rf pkg/assets/web/*

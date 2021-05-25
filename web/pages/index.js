@@ -1,8 +1,7 @@
 import Axios from "axios";
 import Head from "next/head";
-import useSWR from "swr";
 
-const fetcher = (url) => Axios.get(url).then((res) => res.data);
+//const fetcher = (url) => Axios.get(url).then((res) => res.data);
 
 export default function Home(props) {
   // const { data,error } = useSWR('http://127.0.0.1:3080/api/user/info',fetcher)
@@ -11,7 +10,6 @@ export default function Home(props) {
   // if (!data) return <div className="app-container text-center text-9xl">Loading...</div>
 
   // const userinfo = data
-
   return (
     <div className="app-container">
       <Head>
@@ -22,189 +20,41 @@ export default function Home(props) {
       </Head>
       <main>
         <div
-          className="relative"
-          style={{
-            width: 500 + "px",
-            height: 600 + "px",
-            border: "1px solid white",
-            marginTop: 10 + "px",
-            borderRadius: "15px",
-          }}
-        >
-          <ul className="list-disc" style={{marginLeft: 20 + 'px',marginTop: 100 + 'px'}}>
-            <li>
-              学习了解dapr: https://dapr.io/
-            </li>
-            <li>
-              阅读Prometheus源码
-            </li>
-          </ul>
-        </div>
-        <div
-          className="absolute p-4 pt-10 text-left"
-          style={{ left: 500 + "px", top: 0 + "px" }}
+          className="absolute p-4 text-sm text-left text-white"
+          style={{ background: "#D5314D00", borderRadius: 15 + "px" }}
         >
           <blockquote>
-            <pre className="text-xs text-current">
-              <span className="line">package main</span>
-              <br />
-              <span className="line" />
-              <br />
-              <span className="line">import (</span>
-              <br />
-              <span className="line">
-                {"\t"}
-                <span className="string">"image"</span>
-              </span>
-              <br />
-              <span className="line">
-                {"\t"}
-                <span className="string">"image/draw"</span>
-              </span>
-              <br />
-              <span className="line" />
-              <br />
-              <span className="line">
-                {"\t"}
-                <span className="string">"github.com/faiface/gui/win"</span>
-              </span>
-              <br />
-              <span className="line">
-                {"\t"}
-                <span className="string">"github.com/faiface/mainthread"</span>
-              </span>
-              <br />
-              <span className="line">)</span>
-              <br />
-              <span className="line" />
-              <br />
-              <span className="line">var (</span>
-              <br />
-              <span className="line">
-                {"\t"}title string =
-                <span className="string">"hello golang gui"</span>
-              </span>
-              <br />
-              <span className="line">{"\t"}width int = 1024</span>
-              <br />
-              <span className="line">{"\t"}height int = 576</span>
-              <br />
-              <span className="line">)</span>
-              <br />
-              <span className="line" />
-              <br />
-              <span className="line">
-                func
-                <span className="function">
-                  <span className="title">run</span>
+            <pre>
+              <div>
+                <p style={{ fontFamily: "'Times New Roman',Georgia,Serif" }}>
+                  {" ╭╴                                              ╶╮"}
+                </p>
+                <p id="realtime" className="ml-6">
+                  <script src="/js/timer.js"></script>
+                </p>
+                <p style={{ fontFamily: "'Times New Roman',Georgia,Serif" }}>
+                  {" ╰╴                                              ╶╯"}
+                </p>
+              </div>
+              <div className="text-sm">
+                <span>
+                  {"\n"}
+                  <span>2021/5/12 下午3:15</span>
+                  {"\t"}|{"\t"}
+                  <span>提交毕业设计</span>
+                  {"\t"}|{"\t"}
+                  <span>论文查重</span>
                 </span>
-                () {"{"}
-              </span>
-              <br />
-              <span className="line">
-                {"\t"}w, err := win.New(win.Title(title), win.Size(width,
-                height), win.Resizable())
-              </span>
-              <br />
-              <span className="line">
-                {"\t"}
-                <span className="keyword">if</span>err != nil {"{"}
-              </span>
-              <br />
-              <span className="line">
-                {"\t"}
-                {"\t"}panic(err)
-              </span>
-              <br />
-              <span className="line">
-                {"\t"}
-                {"}"}
-              </span>
-              <br />
-              <span className="line">
-                {"\t"}w.Draw() &lt;- func(drw draw.Image) image.Rectangle {"{"}
-              </span>
-              <br />
-              <span className="line">
-                {"\t"}
-                {"\t"}rectImage := image.NewRGBA(image.Rect(int(width/2+150),
-                int(height/2+150), int(width/2-150), int(height/2-150)))
-              </span>
-              <br />
-              <span className="line">
-                {"\t"}
-                {"\t"}draw.Draw(drw, rectImage.Bounds(), image.White,
-                image.Point{"{"}
-                {"}"}, draw.Src)
-              </span>
-              <br />
-              <span className="line">
-                {"\t"}
-                {"\t"}
-                <span className="built_in">return</span>rectImage.Bounds()
-              </span>
-              <br />
-              <span className="line">
-                {"\t"}
-                {"}"}
-              </span>
-              <br />
-              <span className="line" />
-              <br />
-              <span className="line">
-                {"\t"}
-                <span className="keyword">for</span>event := range w.
-                <span className="function">
-                  <span className="title">Events</span>
+                <span>
+                  {"\n"}
+                  <span>2021/5/10 下午3:15</span>
+                  {"\t"}|{"\t"}
+                  <span>接种疫苗</span>
+                  {"\t"}|{"\t"}
+                  <span>学生中心</span>
                 </span>
-                () {"{"}
-              </span>
-              <br />
-              <span className="line">
-                {"\t"}
-                {"\t"}switch event.(
-                <span className="built_in">type</span>) {"{"}
-              </span>
-              <br />
-              <span className="line">
-                {"\t"}
-                {"\t"}
-                <span className="keyword">case</span>win.WiClose:
-              </span>
-              <br />
-              <span className="line">
-                {"\t"}
-                {"\t"}
-                {"\t"}close(w.Draw())
-              </span>
-              <br />
-              <span className="line">
-                {"\t"}
-                {"\t"}
-                {"}"}
-              </span>
-              <br />
-              <span className="line">
-                {"\t"}
-                {"}"}
-              </span>
-              <br />
-              <span className="line">{"}"}</span>
-              <br />
-              <span className="line" />
-              <br />
-              <span className="line">
-                func
-                <span className="function">
-                  <span className="title">main</span>
-                </span>
-                () {"{"}
-              </span>
-              <br />
-              <span className="line">{"\t"}mainthread.Run(run)</span>
-              <br />
-              <span className="line">{"}"}</span>
-              <br />
+                <br />
+              </div>
             </pre>
           </blockquote>
         </div>

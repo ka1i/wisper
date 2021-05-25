@@ -29,11 +29,13 @@ func main() {
 	}
 	internal.InitApp()
 
-	//addr := internal.Serve()
+	c := make(chan internal.Api)
+
+	addr := internal.Serve(c)
 	fw := internal.Watch()
 
-	localServe := fmt.Sprintf("http://localhost:%d", 3000)//addr.Port)
+	localServe := fmt.Sprintf("http://localhost:%d", addr)
 	log.Printf("started server on %s\n", localServe)
 
-	internal.Wisper(localServe, fw)
+	internal.Wisper(localServe, fw, c)
 }
