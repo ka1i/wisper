@@ -19,6 +19,7 @@ jobs:
       run: |
         go mod tidy && make
         echo "RELEASE=wispeeer_$(git rev-parse --short HEAD).tar.gz" >> $GITHUB_ENV
+        echo "VERSION="$(cat .version) >> $GITHUB_ENV
 
     - name: Gzip
       run: tar -czvf ${{ env.RELEASE }} -C./bin/ wispeeer
@@ -31,8 +32,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
+        tag_name: ${{ env.VERSION }}
+        release_name: wispeeer:${{ env.VERSION }}
         body: |
           ${{ steps.Changelog.outputs.changelog }}
         draft: false
