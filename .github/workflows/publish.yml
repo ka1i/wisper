@@ -47,7 +47,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
       with:
-        tag_name: wisper-${{ git describe --tags --always --dirty="-dev" }}
+        tag_name: wisper-tag=nmae
         release_name: Release ${{ github.sha }}
         body: |
           Changes ${{ github.sha }}
@@ -62,3 +62,10 @@ jobs:
         asset_path: wisper.tar.gz
         asset_name: wisper.tar.gz
         asset_content_type: application/gzip
+    - uses: actions/checkout@master
+    - name: Create a Release
+      uses: elgohr/Github-Release-Action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+      with:
+        args: MyReleaseMessage
