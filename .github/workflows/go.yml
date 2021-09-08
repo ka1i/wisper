@@ -22,6 +22,9 @@ jobs:
 
     - name: Gzip
       run: tar -czvf ${{ env.RELEASE }} -C./bin/ wispeeer
+    - name: Changelog
+      uses: glennawatson/ChangeLog@v1
+      id: changelog
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
@@ -31,9 +34,7 @@ jobs:
         tag_name: ${{ github.ref }}
         release_name: Release ${{ github.ref }}
         body: |
-          Changes in this Release
-          - First Change
-          - Second Change
+          ${{ steps.Changelog.outputs.changelog }}
         draft: false
         prerelease: false
     - name: Upload Release Asset
