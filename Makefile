@@ -1,4 +1,4 @@
-PREFIX  := matrix
+PREFIX  := wispeeer
 SOURCE  := cmd/${PREFIX}/main.go
 BINARY  := bin/${PREFIX}
 

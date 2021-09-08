@@ -3,7 +3,7 @@
 # Args: source, target
 # eg: build.sh ./main.go ./bin/program
 
-TAG=$(git describe --tags --always --dirty="-dev")
+TAG=$(echo $([ -n "$(git status -s)"  ] && echo "$(git rev-parse --short HEAD)-dev" || echo "$(git rev-parse --short HEAD)"))
 UPT=$(date +"%Y/%m/%d %T %z")
 ENV=$(uname -snr)
 
