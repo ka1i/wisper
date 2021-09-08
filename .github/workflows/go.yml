@@ -18,9 +18,10 @@ jobs:
     - name: Build
       run: go mod tidy && make
     - name: Gzip
-      run: ｜
-        echo "RELEASE=wispeeer_$(git rev-parse --short HEAD).tar.gz" >> $GITHUB_ENV &&
+      run: |
+        echo "RELEASE=wispeeer_$(git rev-parse --short HEAD).tar.gz" >> $GITHUB_ENV
         tar -czvf ${{ env.RELEASE }} -C./bin/ wispeeer
+
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
