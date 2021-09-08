@@ -9,6 +9,7 @@ ENV=$(uname -snr)
 
 echo "making $2"
 mkdir -p bin
+echo "v0.0.1" > .version
 echo "Version:${TAG}"
 
 go mod tidy
