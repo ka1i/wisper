@@ -39,7 +39,7 @@ jobs:
       - name: prebuild setup
         run: |
           sudo apt update
-          sudo apt install -y clang bison build-essential make cmake libncurses-dev libssl-dev
+          sudo apt install -y clang ldd bison build-essential make cmake libncurses-dev libssl-dev
           cat /proc/cpuinfo
           
       - name: build kernel
