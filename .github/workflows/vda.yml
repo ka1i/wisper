@@ -14,11 +14,10 @@ jobs:
     
     - name: download script
       run: |
-        wget https://raw.githubusercontent.com/GuzalAida/simpleos/master/macos/buildImage.sh
-        chmod +x buildImage.sh
+        chmod +x buildvda.sh
       
     - name: Install dependencies
-      run: ARCH=x86_64 ./buildImage.sh
+      run: ./buildImage.sh
       
     - name: env
       run: |
