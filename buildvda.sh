@@ -15,5 +15,5 @@ sudo mount vda.img /mnt/vda
 prefix=$(pwd)
 cd /mnt/vda
 sudo tar xf ${prefix}/alpine-minirootfs-3.14.2-x86_64.tar.gz
-
+sync
 sudo umount /mnt/vda
