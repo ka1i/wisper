@@ -15,18 +15,18 @@ sudo mount vda.img /mnt/vda
 prefix=$(pwd)
 cd /mnt/vda
 sudo tar xf ${prefix}/alpine-minirootfs-3.14.2-x86_64.tar.gz
-rm -rf etc/conf.d etc/logrotate.d etc/modprobe.d etc/modules-load.d etc/network etc/opt etc/sysctl.d lib/modules-load.d
-rm etc/modules etc/udhcpd.conf etc/sysctl.conf etc/hostname etc/motd etc/issue etc/shadow
-cp /etc/passwd etc/passwd
-cp /etc/group etc/group
-cp /etc/hosts etc/hosts
-cp /etc/inittab etc/inittab
-cp /etc/fstab etc/fstab
-cp -Tr ../etc/init.d etc/init.d
-mkdir etc/dropbear
-cp -Tr /root root
-cp /usr/share/udhcpc/default.script usr/share/udhcpc/default.script
-rm -rf lib/sysctl.d
-rm -rf media opt srv
+sudo rm -rf etc/conf.d etc/logrotate.d etc/modprobe.d etc/modules-load.d etc/network etc/opt etc/sysctl.d lib/modules-load.d
+sudo rm etc/modules etc/udhcpd.conf etc/sysctl.conf etc/hostname etc/motd etc/issue etc/shadow
+sudo cp /etc/passwd etc/passwd
+sudo cp /etc/group etc/group
+sudo cp /etc/hosts etc/hosts
+sudo cp /etc/inittab etc/inittab
+sudo cp /etc/fstab etc/fstab
+sudo cp -Tr ../etc/init.d etc/init.d
+sudo mkdir etc/dropbear
+sudo cp -Tr /root root
+sudo cp /usr/share/udhcpc/default.script usr/share/udhcpc/default.script
+sudo rm -rf lib/sysctl.d
+sudo rm -rf media opt srv
 
-umount /mnt/vda
+sudo umount /mnt/vda
