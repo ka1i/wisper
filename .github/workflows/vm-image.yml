@@ -38,7 +38,7 @@ jobs:
 
       - name: prebuild setup
         run: |
-          sudo apt update
+          sudo apt update && sudo apt upgrade
           sudo apt install -y clang lld bison build-essential make cmake libncurses-dev libssl-dev
           cat /proc/cpuinfo
           
