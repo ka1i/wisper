@@ -9,7 +9,7 @@ fi
 
 dd if=/dev/zero of=vda.img bs=1M count=512
 mkfs.ext4 vda.img
-mkdir /mnt/vda
+sudo mkdir /mnt/vda
 sudo mount vda.img /mnt/vda
 
 prefix=$(pwd)
