@@ -42,12 +42,7 @@ jobs:
         run: |
           sudo apt update && sudo apt upgrade
           sudo apt install -y clang-12 lld-12 llvm-12 bison build-essential make cmake libelf-dev libncurses-dev libssl-dev
-          sudo ln -sf /usr/lib/llvm-12/bin/clang /usr/bin/clang
-          sudo ln -sf /usr/lib/llvm-12/bin/ld.lld /usr/bin/ld.lld
-          sudo ln -sf /usr/lib/llvm-12/bin/llvm-ar /usr/bin/llvm-ar
-          sudo ln -sf /usr/lib/llvm-12/bin/llvm-as /usr/bin/llvm-as
-          sudo ln -sf /usr/lib/llvm-12/bin/llvm-objcopy /usr/bin/llvm-objcopy
-          sudo ln -sf /usr/lib/llvm-12/bin/llvm-objdump /usr/bin/llvm-objdump
+          sudo ln -sf /usr/lib/llvm-12/bin/llvm-* /usr/bin
           
       - name: build kernel
         run: cd linux && make CC=clang LLVM=1 LLVM_IAS=1 -j2 $*
