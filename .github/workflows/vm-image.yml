@@ -29,12 +29,14 @@ jobs:
         run: |
           wget -O linux.tar.xz https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.14.5.tar.xz
           wget https://raw.githubusercontent.com/apinske/simpleos/master/macos/config-linux-x86_64
+          wget https://raw.githubusercontent.com/apinske/simpleos/master/macos/linux-x86_64.patch
           
       - name: unzip kernel
         run: |
           mkdir linux
           tar -xf linux.tar.xz -C linux --strip-components=1
           cp config-linux-x86_64 linux/.config
+          patch -d linux -p1 < linux-x86_64.patch
 
       - name: prebuild setup
         run: |
