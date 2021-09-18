@@ -20,7 +20,7 @@ jobs:
         chmod +x buildImage.sh
       
     - name: Install dependencies
-      run: ./buildImage.sh
+      run: ARCH=x86_64 ./buildImage.sh
       
     - name: env
       run: |
