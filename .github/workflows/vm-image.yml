@@ -28,8 +28,8 @@ jobs:
       - name: download kernel
         run: |
           wget -O linux.tar.xz https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.14.5.tar.xz
-          mkdir linux && cd linux
-          tar -xf ../linux.tar.xz -C /tmp --strip-components=1
+          mkdir linux
+          tar -xf ../linux.tar.xz -C linux --strip-components=1
           cd ..
 
       - name: prebuild setup
