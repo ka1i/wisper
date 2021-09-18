@@ -46,6 +46,8 @@ jobs:
           sudo ln -sf /usr/lib/llvm-12/bin/ld.lld /usr/bin/ld.lld
           sudo ln -sf /usr/lib/llvm-12/bin/llvm-ar /usr/bin/llvm-ar
           sudo ln -sf /usr/lib/llvm-12/bin/llvm-as /usr/bin/llvm-as
+          sudo ln -sf /usr/lib/llvm-12/bin/llvm-objcopy /usr/bin/llvm-objcopy
+          sudo ln -sf /usr/lib/llvm-12/bin/llvm-objdump /usr/bin/llvm-objdump
           
       - name: build kernel
         run: cd linux && make CC=clang LLVM=1 LLVM_IAS=1 -j2 $*
