@@ -48,33 +48,38 @@ jobs:
           
       - name: build kernel
         run: cd linux && make CC=clang LLVM=1 LLVM_IAS=1 -j2 $*
+        
+      - name: env
+        run: |
+            echo "RELEASE=vmlinuz.tar.gz" >> $GITHUB_ENV
+            echo "VERSION="$(cat .version) >> $GITHUB_ENV
 
       - name: Gzip
-        run: tar -czvf ${{ env.RELEASE }} -C./bin/ wispeeer
-
-	  - name: Changelog
-   	   	uses: glennawatson/ChangeLog@v1
-  	    id: changelog
-	   	
-	  - name: Create Release
-	    id: create_release
-	    uses: actions/create-release@v1
-	    env:
- 	       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      	with:
-        	tag_name: ${{ env.VERSION }}
-        	release_name: wispeeer:${{ env.VERSION }}
-        	body: |
-          	${{ steps.Changelog.outputs.changelog }}
-        	draft: false
-        	prerelease: false
-   	  - name: Upload Release Asset
-      	id: upload-release-asset 
-      	uses: actions/upload-release-asset@v1
-      	env:
-        	GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      	with:
-        	upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-        asset_path: ./${{ env.RELEASE }}
-        asset_name: ${{ env.RELEASE }}
-        asset_content_type: application/gzip
+        run: tar -czvf ${{ env.RELEASE }} -C./linux/arch/x86/boot/ bzImage
+      
+      - name: Changelog
+        uses: glennawatson/ChangeLog@v1
+        id: changelog
+      
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+            tag_name: ${{ env.VERSION }}
+            release_name: wispeeer:${{ env.VERSION }}
+            body: |
+                ${{ steps.Changelog.outputs.changelog }}
+            draft: false
+            prerelease: false
+      - name: Upload Release Asset
+        id: upload-release-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+            upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+            asset_path: ./${{ env.RELEASE }}
+            asset_name: ${{ env.RELEASE }}
+            asset_content_type: application/gzip
