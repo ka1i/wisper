@@ -39,4 +39,4 @@ jobs:
           cat /proc/cpuinfo
           
       - name: build kernel
-        run: cd /tmp/linux && make CC=clang LLVM=1 LLVM_IAS=1 -j2 $*
+        run: cd linux && make CC=clang LLVM=1 LLVM_IAS=1 -j2 $*
