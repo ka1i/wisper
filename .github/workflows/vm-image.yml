@@ -39,8 +39,9 @@ jobs:
       - name: prebuild setup
         run: |
           sudo apt update && sudo apt upgrade
-          sudo apt install -y clang lld bison build-essential make cmake libncurses-dev libssl-dev
-          cat /proc/cpuinfo
+          sudo apt install -y clang-12 lld-12 bison build-essential make cmake libncurses-dev libssl-dev
+          sudo ln -sf /usr/lib/llvm-12/bin/clang /usr/bin/clang
+          sudo ln -sf /usr/lib/llvm-12/bin/ld.lld  /usr/bin/ld.lld
           
       - name: build kernel
         run: cd linux && make CC=clang LLVM=1 LLVM_IAS=1 -j2 $*
