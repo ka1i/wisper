@@ -53,6 +53,7 @@ jobs:
         run: |
             echo "RELEASE=vmlinuz.tar.gz" >> $GITHUB_ENV
             echo "VERSION="$(cat .version) >> $GITHUB_ENV
+            echo "TAGS="$(git rev-parse --short HEAD) >> $GITHUB_ENV
 
       - name: Gzip
         run: tar -czvf ${{ env.RELEASE }} -C./linux/arch/x86/boot/ bzImage
@@ -67,7 +68,7 @@ jobs:
         env:
            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-            tag_name: ${{ env.VERSION }}-5.14.5
+            tag_name: ${{ env.VERSION }}-${{ env.TAGS }}
             release_name: wispeeer:${{ env.VERSION }}
             body: |
                 ${{ steps.Changelog.outputs.changelog }}
