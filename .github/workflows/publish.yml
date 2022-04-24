@@ -15,20 +15,10 @@ jobs:
       with:
         node-version: 14.x
 
-    - name: Setup
+    - name: setup
       run: |
-        cd web
-        yarn
-        yarn static
-
-    - name: cpoy assets
-      run: |
-        if [ -d "pkg/assets/web" ]; then
-          rm -vr pkg/assets/web
-        else 
-          mkdir pkg/assets/web
-        fi
-        cp -vr web/out/* pkg/assets/web/
+        uname -usr
+        pwd
 
     - name: Set up Go 1.16
       uses: actions/setup-go@v2
@@ -40,7 +30,7 @@ jobs:
     - name: Build
       run: make build
     - name: Gzip
-      run: tar -czvf wisper.tar.gz -C./bin/ wisper_$(git describe --tags --always)/wisper
+      run: touch wisper.tar.gz
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
