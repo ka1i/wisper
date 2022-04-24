@@ -43,10 +43,10 @@ jobs:
           Changes ${{ github.sha }}
         draft: false
         prerelease: false
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v3
     - name: Create a Release
-      uses: elgohr/Github-Release-Action@master
+      uses: elgohr/Github-Release-Action@v4
       env:
         GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       with:
-        args: MyReleaseMessage
+        title: MyReleaseMessage
